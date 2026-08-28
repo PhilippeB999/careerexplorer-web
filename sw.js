@@ -5,7 +5,7 @@
    On n'intercepte QUE les fichiers du site : Supabase, CDN et l'analytique
    passent sans interception (url.origin !== location.origin). */
 
-const CACHE = "careerexplorer-v1";
+const CACHE = "careerexplorer-v2";
 const ASSETS = [
   "index.html",
   "app.js",

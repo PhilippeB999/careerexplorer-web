@@ -98,6 +98,7 @@ const UI = {
     compareBtn: "Comparer 2 métiers",
     whatIsIt: "C'est quoi ?",
     theProgram: "Le programme",
+    exampleTasks: "Exemples de tâches",
     salary: "Salaire médian",
     inDemand: "En demande ?",
     sourceLabel: "Salaire médian et perspectives",
@@ -139,6 +140,7 @@ const UI = {
     compareBtn: "Compare 2 trades",
     whatIsIt: "What is it?",
     theProgram: "The program",
+    exampleTasks: "Example tasks",
     salary: "Median wage",
     inDemand: "In demand?",
     sourceLabel: "Median wage and outlook",
@@ -396,6 +398,18 @@ function demandText(tr) {
   }
   return `<span class="prov">${esc(t("demandPlaceholder"))}</span>`;
 }
+// Section « Exemples de tâches » : liste à puces, affichée si le métier a des tâches.
+function tasksSection(tr) {
+  const list = state.lang === "fr" ? tr.tasksFr : tr.tasksEn;
+  if (!Array.isArray(list) || !list.length) return "";
+  return `
+    <section class="info-block">
+      <h3>🛠️ ${esc(t("exampleTasks"))}</h3>
+      <ul class="task-list">
+        ${list.map(x => `<li>${esc(x)}</li>`).join("")}
+      </ul>
+    </section>`;
+}
 // Citation Guichet-Emplois (région + date), affichée seulement si une vraie donnée existe.
 function salarySourceNote(tr) {
   const s = tr.salary || {};
@@ -434,6 +448,8 @@ function renderTrade() {
       <h3>🎓 ${esc(t("theProgram"))}</h3>
       <p>${esc(L(tr.programFr, tr.programEn))}</p>
     </section>
+
+    ${tasksSection(tr)}
 
     <div class="info-grid">
       <div class="info-tile">

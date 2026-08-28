@@ -2,8 +2,9 @@
    Career Explorer — DONNÉES DE CONTENU
    ---------------------------------------------------------------------
    ⚠️ CONTENU PROVISOIRE — À VALIDER.
-   - Descriptions et mises en situation : rédigées de bonne foi, plausibles,
-     mais NON validées par un conseiller pédagogique. À relire par Eastern Shores.
+   - Descriptions, exemples de tâches (tasksFr/tasksEn) et mises en situation :
+     rédigés de bonne foi, plausibles, mais NON validés par un conseiller
+     pédagogique. À relire par Eastern Shores.
    - Durées de programme : marquées « à valider ».
    - Salaires : RÉELS. Champ `hourly` = salaire MÉDIAN horaire du Guichet-Emplois,
      région Gaspésie–Îles-de-la-Madeleine (maj 2026-08), sauf « navale » = niveau
@@ -93,6 +94,8 @@ const TRADES = [
     whatEn: "Keeping a company's books: invoices, payroll, taxes, financial statements. Precise office work where the numbers must balance to the cent.",
     programFr: "DEP en Comptabilité. Durée à valider (~1 an). À quoi s'attendre : logiciels comptables, tenue de livres, paie, taxes (TPS/TVQ) et beaucoup de rigueur.",
     programEn: "Accounting DVS. Duration to be confirmed (~1 year). Expect: accounting software, bookkeeping, payroll, sales taxes and a lot of rigour.",
+    tasksFr: ["Enregistrer les factures et les paiements dans le logiciel comptable", "Préparer la paie des employés", "Produire les déclarations de taxes (TPS/TVQ)", "Concilier les comptes bancaires à la fin du mois"],
+    tasksEn: ["Record invoices and payments in the accounting software", "Prepare employee payroll", "File sales-tax returns (GST/QST)", "Reconcile bank accounts at month-end"],
     salary: { hourly: 28.00, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 3 },
     scenario: {
@@ -129,6 +132,8 @@ const TRADES = [
     whatEn: "Building wood structures: framing, walls, stairs, formwork. You read plans, measure, cut and assemble on job sites.",
     programFr: "DEP en Charpenterie-menuiserie. Durée à valider (~1 an et demi). À quoi s'attendre : lecture de plans, outils électriques, sécurité de chantier, travail d'équipe dehors.",
     programEn: "Carpentry DVS. Duration to be confirmed (~1.5 years). Expect: reading plans, power tools, site safety, outdoor teamwork.",
+    tasksFr: ["Lire un plan et calculer les matériaux nécessaires", "Monter la charpente d'un mur ou d'un toit", "Installer des portes, des fenêtres et des escaliers", "Couper et assembler le bois avec des outils électriques"],
+    tasksEn: ["Read a blueprint and calculate the materials needed", "Frame a wall or a roof structure", "Install doors, windows and stairs", "Cut and assemble wood with power tools"],
     salary: { hourly: 36.84, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 2 },
     scenario: {
@@ -165,6 +170,8 @@ const TRADES = [
     whatEn: "Operating heavy machinery: excavators, loaders, dozers. You move earth, dig and grade on job sites, often outdoors in all weather.",
     programFr: "DEP en Conduite d'engins de chantier. Durée à valider (~1 an). À quoi s'attendre : maniement d'engins, sécurité, entretien de base, longues journées en plein air.",
     programEn: "Construction Equipment Operation DVS. Duration to be confirmed (~1 year). Expect: operating machines, safety, basic maintenance, long days outdoors.",
+    tasksFr: ["Creuser une tranchée avec une pelle mécanique", "Niveler un terrain avec une niveleuse ou un bouteur", "Charger et déplacer des matériaux avec un chargeur", "Inspecter et entretenir la machinerie avant chaque quart"],
+    tasksEn: ["Dig a trench with an excavator", "Grade land with a grader or a dozer", "Load and move materials with a loader", "Inspect and maintain the machinery before each shift"],
     salary: { hourly: 30.00, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 1 },
     scenario: {
@@ -201,6 +208,8 @@ const TRADES = [
     whatEn: "Providing patient care under nurses' supervision: vital signs, hygiene, medication, comfort. A caring role in hospitals or long-term care.",
     programFr: "DEP en Santé, assistance et soins infirmiers. Durée à valider (~1 an et demi). À quoi s'attendre : anatomie, soins, stages en milieu clinique, empathie et rigueur.",
     programEn: "Health, Assistance & Nursing DVS. Duration to be confirmed (~1.5 years). Expect: anatomy, care techniques, clinical placements, empathy and rigour.",
+    tasksFr: ["Prendre les signes vitaux (tension, pouls, température)", "Administrer des médicaments selon l'ordonnance", "Faire des pansements et des prélèvements", "Noter l'état du patient à son dossier"],
+    tasksEn: ["Take vital signs (blood pressure, pulse, temperature)", "Administer medication as prescribed", "Change dressings and take samples", "Record the patient's condition in the chart"],
     salary: { hourly: 29.00, low: 21.00, high: 32.32, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 3 },
     scenario: {
@@ -237,6 +246,8 @@ const TRADES = [
     whatEn: "Supporting people who've lost autonomy day to day: help with meals, hygiene, mobility and a reassuring presence. A job of heart and patience.",
     programFr: "DEP en Assistance à la personne (à domicile / en établissement). Durée à valider (~1 an). À quoi s'attendre : soins de base, déplacements sécuritaires, écoute, stages.",
     programEn: "Support for Assistive Services DVS (home / facility). Duration to be confirmed (~1 year). Expect: basic care, safe transfers, active listening, placements.",
+    tasksFr: ["Aider à la toilette, à l'habillage et aux repas", "Aider aux déplacements et aux transferts (lit ↔ fauteuil)", "Veiller au confort et au bien-être des résidents", "Signaler tout changement à l'infirmière"],
+    tasksEn: ["Help with washing, dressing and meals", "Assist with mobility and transfers (bed ↔ chair)", "Watch over residents' comfort and well-being", "Report any change to the nurse"],
     salary: { hourly: 25.46, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 3 },
     scenario: {
@@ -273,6 +284,8 @@ const TRADES = [
     whatEn: "Keeping an office running: writing, scheduling, email, filing, reception. You juggle office software and contact with people.",
     programFr: "DEP en Secrétariat. Durée à valider (~1 an). À quoi s'attendre : traitement de texte, français écrit, gestion de l'agenda, service à la clientèle.",
     programEn: "Secretarial Studies DVS. Duration to be confirmed (~1 year). Expect: word processing, written skills, calendar management, customer service.",
+    tasksFr: ["Rédiger et mettre en forme des lettres et des documents", "Gérer l'agenda et fixer les rendez-vous", "Répondre aux appels et accueillir les visiteurs", "Classer et archiver les dossiers"],
+    tasksEn: ["Draft and format letters and documents", "Manage the calendar and book appointments", "Answer calls and greet visitors", "File and archive records"],
     salary: { hourly: 25.00, low: 18.50, high: 32.00, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 2 },
     scenario: {
@@ -309,6 +322,8 @@ const TRADES = [
     whatEn: "Troubleshooting computers and networks: install, configure, fix issues, help users. Half technical, half customer service.",
     programFr: "DEP en Soutien informatique. Durée à valider (~1 an et demi). À quoi s'attendre : matériel, systèmes d'exploitation, réseaux, dépannage et patience avec les usagers.",
     programEn: "IT Support DVS. Duration to be confirmed (~1.5 years). Expect: hardware, operating systems, networks, troubleshooting and patience with users.",
+    tasksFr: ["Diagnostiquer et régler les problèmes d'ordinateurs", "Installer et configurer logiciels et périphériques", "Créer des comptes et réinitialiser des mots de passe", "Aider les utilisateurs par téléphone ou à distance"],
+    tasksEn: ["Diagnose and fix computer problems", "Install and set up software and devices", "Create accounts and reset passwords", "Help users by phone or remotely"],
     salary: { hourly: 32.98, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 1 },
     scenario: {
@@ -345,6 +360,8 @@ const TRADES = [
     whatEn: "Driving heavy trucks over long distances: deliveries, loading, meeting schedules and road safety. A lot of autonomy on the road.",
     programFr: "DEP en Transport par camion. Durée à valider (~6 mois). À quoi s'attendre : permis classe 1, manœuvres, inspection du véhicule, règles de la route, longues heures.",
     programEn: "Trucking DVS. Duration to be confirmed (~6 months). Expect: class 1 licence, manoeuvres, vehicle inspection, road rules, long hours.",
+    tasksFr: ["Planifier son itinéraire et respecter l'horaire", "Faire l'inspection du camion avant le départ", "Charger, arrimer et livrer la marchandise", "Tenir le registre des heures et du carburant"],
+    tasksEn: ["Plan the route and keep to the schedule", "Do a pre-trip inspection of the truck", "Load, secure and deliver the freight", "Keep a log of hours and fuel"],
     salary: { hourly: 26.00, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 1 },
     scenario: {
@@ -381,6 +398,8 @@ const TRADES = [
     whatEn: "Cutting, trimming and styling hair and beards. A creative, social trade: every client leaves with a new look, and often a smile.",
     programFr: "AEP en Barbier. Durée à valider (quelques mois). À quoi s'attendre : techniques de coupe, taille de barbe, hygiène, service à la clientèle et sens artistique.",
     programEn: "Barbering AVS. Duration to be confirmed (a few months). Expect: cutting techniques, beard trimming, hygiene, customer service and an artistic eye.",
+    tasksFr: ["Couper et dégrader les cheveux aux ciseaux et à la tondeuse", "Tailler et dessiner la barbe", "Conseiller le client sur le style qui lui convient", "Désinfecter les outils entre chaque client"],
+    tasksEn: ["Cut and fade hair with scissors and clippers", "Trim and shape beards", "Advise clients on a style that suits them", "Disinfect tools between each client"],
     salary: { hourly: 21.63, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 3 },
     scenario: {
@@ -417,6 +436,8 @@ const TRADES = [
     whatEn: "Washing, clipping and grooming pets' coats. It takes patience, gentleness and a steady hand with dogs that don't always cooperate.",
     programFr: "AEP en Toilettage d'animaux. Durée à valider (quelques mois). À quoi s'attendre : soins du pelage, manipulation sécuritaire, hygiène et lecture du comportement animal.",
     programEn: "Pet Grooming AVS. Duration to be confirmed (a few months). Expect: coat care, safe handling, hygiene and reading animal behaviour.",
+    tasksFr: ["Laver, sécher et brosser l'animal", "Tondre et couper le poil selon la race", "Tailler les griffes et nettoyer les oreilles", "Rassurer et manipuler l'animal en douceur"],
+    tasksEn: ["Wash, dry and brush the animal", "Clip and trim the coat by breed", "Trim nails and clean ears", "Keep the animal calm and handle it gently"],
     salary: { hourly: 18.57, low: 16.60, high: 25.00, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 2 },
     scenario: {
@@ -453,6 +474,8 @@ const TRADES = [
     whatEn: "Guiding and leading groups of children in schools: games, homework, safety, development. A lively job needing energy and kindness.",
     programFr: "AEP en Éducation en service de garde en milieu scolaire. Durée à valider (quelques mois). À quoi s'attendre : animation, développement de l'enfant, sécurité, gestion de groupe.",
     programEn: "School Daycare Educator AVS. Duration to be confirmed (a few months). Expect: activity leading, child development, safety, group management.",
+    tasksFr: ["Organiser des jeux et des activités éducatives", "Encadrer et surveiller les enfants", "Aider aux devoirs et aux collations", "Gérer les conflits et rassurer les enfants"],
+    tasksEn: ["Organize games and learning activities", "Supervise and guide the children", "Help with homework and snacks", "Manage conflicts and reassure the children"],
     salary: { hourly: 24.00, region: "Gaspésie–Îles-de-la-Madeleine", updated: "2026-08" },
     demand: { demandLevel: 2 },
     scenario: {
@@ -489,6 +512,8 @@ const TRADES = [
     whatEn: "Assembling and repairing ship hulls and structures: metal cutting, welding, fitting. Rugged, precise work, often by the water.",
     programFr: "AEP en Construction navale. Durée à valider (quelques mois). À quoi s'attendre : lecture de plans, soudure, découpe, assemblage et sécurité en chantier naval.",
     programEn: "Shipbuilding AVS. Duration to be confirmed (a few months). Expect: reading plans, welding, cutting, fitting and shipyard safety.",
+    tasksFr: ["Lire des plans de coque et de structure", "Couper et assembler des pièces d'acier", "Souder et meuler les joints", "Vérifier l'assemblage et corriger les défauts"],
+    tasksEn: ["Read hull and structural plans", "Cut and assemble steel parts", "Weld and grind the joints", "Check assemblies and fix defects"],
     salary: { hourly: 26.80, region: "Québec (province)", updated: "2026-08" },
     demand: { demandLevel: 1 },
     scenario: {

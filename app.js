@@ -97,8 +97,9 @@ const UI = {
     compareBtn: "Comparer 2 métiers",
     whatIsIt: "C'est quoi ?",
     theProgram: "Le programme",
-    salary: "Salaire moyen",
+    salary: "Salaire médian",
     inDemand: "En demande ?",
+    sourceLabel: "Salaire médian et perspectives",
     tryScenario: "Mise en situation",
     tryQuest: "Essayer l'app Quest",
     noQuest: "App Quest à venir",
@@ -115,7 +116,7 @@ const UI = {
     yourProfile: "Ton profil d'intérêts",
     backHome: "Accueil",
     dailyLabel: "Au quotidien",
-    demandLevels: { 1: "Perspectives limitées", 2: "Bonnes perspectives", 3: "Très en demande" }
+    demandLevels: { 1: "Perspectives limitées", 2: "Perspectives modérées", 3: "Bonnes perspectives" }
   },
   en: {
     appName: "Career Explorer",
@@ -136,8 +137,9 @@ const UI = {
     compareBtn: "Compare 2 trades",
     whatIsIt: "What is it?",
     theProgram: "The program",
-    salary: "Average salary",
+    salary: "Median wage",
     inDemand: "In demand?",
+    sourceLabel: "Median wage and outlook",
     tryScenario: "Try a day on the job",
     tryQuest: "Try the Quest app",
     noQuest: "Quest app coming soon",
@@ -154,7 +156,7 @@ const UI = {
     yourProfile: "Your interest profile",
     backHome: "Home",
     dailyLabel: "Day to day",
-    demandLevels: { 1: "Limited outlook", 2: "Good outlook", 3: "High demand" }
+    demandLevels: { 1: "Limited outlook", 2: "Moderate outlook", 3: "Good outlook" }
   }
 };
 function t(key) { return UI[state.lang][key]; }
@@ -354,10 +356,18 @@ function openTrade(id) {
 function backToResults() { state.screen = "results"; render(); }
 
 function salaryText(tr) {
-  if (tr.salary && typeof tr.salary.annual === "number") {
+  const s = tr.salary || {};
+  // Priorité : salaire médian HORAIRE (donnée réelle du Guichet-Emplois).
+  if (typeof s.hourly === "number") {
+    const dec = Number.isInteger(s.hourly) ? 0 : 2;
+    const n = s.hourly.toLocaleString(state.lang === "fr" ? "fr-CA" : "en-CA",
+      { minimumFractionDigits: dec, maximumFractionDigits: dec });
+    return state.lang === "fr" ? `${n} $ / h` : `$${n} / hr`;
+  }
+  if (typeof s.annual === "number") {
     return state.lang === "fr"
-      ? `${tr.salary.annual.toLocaleString("fr-CA")} $ / an`
-      : `$${tr.salary.annual.toLocaleString("en-CA")} / yr`;
+      ? `${s.annual.toLocaleString("fr-CA")} $ / an`
+      : `$${s.annual.toLocaleString("en-CA")} / yr`;
   }
   return `<span class="prov">${esc(t("salaryPlaceholder"))}</span>`;
 }
@@ -366,6 +376,16 @@ function demandText(tr) {
     return esc(t("demandLevels")[tr.demand.demandLevel]);
   }
   return `<span class="prov">${esc(t("demandPlaceholder"))}</span>`;
+}
+// Citation Guichet-Emplois (région + date), affichée seulement si une vraie donnée existe.
+function salarySourceNote(tr) {
+  const s = tr.salary || {};
+  const hasData = typeof s.hourly === "number" || typeof s.annual === "number"
+    || (tr.demand && [1, 2, 3].includes(tr.demand.demandLevel));
+  if (!hasData || !s.region) return "";
+  const src = state.lang === "fr" ? "Guichet-Emplois" : "Job Bank";
+  const when = s.updated ? ` · ${esc(s.updated)}` : "";
+  return `<p class="src-note">${esc(t("sourceLabel"))} : ${src} — ${esc(s.region)}${when}.</p>`;
 }
 
 function renderTrade() {
@@ -405,6 +425,7 @@ function renderTrade() {
         <div class="tile-val">${demandText(tr)}</div>
       </div>
     </div>
+    ${salarySourceNote(tr)}
 
     <section class="info-block scenario">
       <h3>🎬 ${esc(t("tryScenario"))} — ${esc(L(tr.scenario.titleFr, tr.scenario.titleEn))}</h3>

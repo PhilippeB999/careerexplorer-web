@@ -88,6 +88,11 @@ where event = 'trade_viewed' and props ? 'trade'
 group by 1
 order by 2 desc;
 
+-- Les vues ne doivent PAS être lisibles avec la clé publique (anon) : l'analytique
+-- se consulte ici (SQL Editor) ou avec la clé secrète, jamais côté client.
+revoke select on public.careerexplorer_entonnoir           from anon, authenticated;
+revoke select on public.careerexplorer_metiers_populaires  from anon, authenticated;
+
 -- =====================================================================
 --  Pour tester après exécution (doit renvoyer 200, insère 1 ligne test) :
 --   select public.enregistrer_evenement('ce-test','quiz_started','{}'::jsonb,'fr', now());

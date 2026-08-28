@@ -85,7 +85,7 @@ const SCALE = [
    salary.annual / demand.demandLevel = null tant que non validés (placeholder). */
 const TRADES = [
   {
-    id: "comptabilite", code: "DEP 5231", emoji: "🧮",
+    id: "comptabilite", code: "DEP 5231", codeEn: "DVS 5731", emoji: "🧮",
     nameFr: "Comptabilité", nameEn: "Accounting",
     questUrl: "https://compta.questedu.ca",
     dims: { precision: 3, technique: 2, client: 1 },
@@ -121,7 +121,7 @@ const TRADES = [
     }
   },
   {
-    id: "charpenterie", code: "DEP 5319", emoji: "🔨",
+    id: "charpenterie", code: "DEP 5319", codeEn: "DVS 5819", emoji: "🔨",
     nameFr: "Charpenterie-menuiserie", nameEn: "Carpentry",
     questUrl: "https://charpenterie.questedu.ca",
     dims: { manuel: 3, precision: 2, pleinair: 2, creatif: 1 },
@@ -157,7 +157,7 @@ const TRADES = [
     }
   },
   {
-    id: "chantier", code: "DEP 5220", emoji: "🚜",
+    id: "chantier", code: "DEP 5220", codeEn: "DVS 5720", emoji: "🚜",
     nameFr: "Conduite d'engins de chantier", nameEn: "Construction Equipment Operation",
     questUrl: "https://chantier.questedu.ca",
     dims: { mecanique: 3, pleinair: 3, manuel: 1, precision: 1 },
@@ -193,7 +193,7 @@ const TRADES = [
     }
   },
   {
-    id: "sasi", code: "DEP 5325", emoji: "🩺",
+    id: "sasi", code: "DEP 5325", codeEn: "DVS 5825", emoji: "🩺",
     nameFr: "Santé, assistance et soins infirmiers", nameEn: "Health, Assistance & Nursing",
     questUrl: "https://sasi.questedu.ca",
     dims: { aider: 3, precision: 2, client: 2 },
@@ -229,7 +229,7 @@ const TRADES = [
     }
   },
   {
-    id: "pab", code: "DEP 5358", emoji: "🧑‍🦽",
+    id: "pab", code: "DEP 5358", codeEn: "DVS 5858", emoji: "🧑‍🦽",
     nameFr: "Assistance à la personne", nameEn: "Support for Assistive Services",
     questUrl: "https://pab.questedu.ca",
     dims: { aider: 3, client: 2, precision: 1 },
@@ -265,7 +265,7 @@ const TRADES = [
     }
   },
   {
-    id: "secretariat", code: "DEP 5357", emoji: "🗂️",
+    id: "secretariat", code: "DEP 5357", codeEn: "DVS 5857", emoji: "🗂️",
     nameFr: "Secrétariat", nameEn: "Secretarial Studies",
     questUrl: "https://secretariat.questedu.ca",
     dims: { technique: 2, precision: 2, client: 2, creatif: 1 },
@@ -301,7 +301,7 @@ const TRADES = [
     }
   },
   {
-    id: "soutieninfo", code: "DEP 5229", emoji: "💻",
+    id: "soutieninfo", code: "DEP 5229", codeEn: "DVS 5729", emoji: "💻",
     nameFr: "Soutien informatique", nameEn: "Information Technology Support",
     questUrl: null,
     dims: { technique: 3, precision: 2, client: 2, mecanique: 1 },
@@ -337,7 +337,7 @@ const TRADES = [
     }
   },
   {
-    id: "camion", code: "DEP 5291", emoji: "🚚",
+    id: "camion", code: "DEP 5291", codeEn: "DVS 5791", emoji: "🚚",
     nameFr: "Transport par camion", nameEn: "Trucking",
     questUrl: null,
     dims: { mecanique: 3, pleinair: 2, precision: 2 },
@@ -373,7 +373,7 @@ const TRADES = [
     }
   },
   {
-    id: "barbier", code: "AEP", emoji: "💈",
+    id: "barbier", code: "AEP", codeEn: "STC", emoji: "💈",
     nameFr: "Barbier", nameEn: "Barbering",
     questUrl: null,
     dims: { creatif: 3, client: 3, precision: 2, manuel: 1 },
@@ -409,7 +409,7 @@ const TRADES = [
     }
   },
   {
-    id: "toilettage", code: "AEP", emoji: "🐩",
+    id: "toilettage", code: "AEP", codeEn: "STC", emoji: "🐩",
     nameFr: "Toilettage d'animaux", nameEn: "Pet Grooming",
     questUrl: null,
     dims: { creatif: 2, aider: 2, manuel: 2, precision: 2, client: 1 },
@@ -445,7 +445,7 @@ const TRADES = [
     }
   },
   {
-    id: "sdg", code: "AEP", emoji: "🧸",
+    id: "sdg", code: "AEP", codeEn: "STC", emoji: "🧸",
     nameFr: "Éducation en service de garde", nameEn: "School Daycare Educator",
     questUrl: null,
     dims: { aider: 3, creatif: 2, client: 2, precision: 1 },
@@ -481,7 +481,7 @@ const TRADES = [
     }
   },
   {
-    id: "navale", code: "AEP", emoji: "⚓",
+    id: "navale", code: "AEP", codeEn: "STC", emoji: "⚓",
     nameFr: "Construction navale", nameEn: "Shipbuilding",
     questUrl: null,
     dims: { manuel: 3, mecanique: 2, precision: 2, pleinair: 1 },

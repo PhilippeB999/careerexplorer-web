@@ -165,6 +165,8 @@ function L(objFr, objEn) { return state.lang === "fr" ? objFr : objEn; }
 /* ---------------- Utilitaires ---------------- */
 function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
 function tradeName(tr) { return state.lang === "fr" ? tr.nameFr : tr.nameEn; }
+// Code du programme : DEP/AEP en français, DVS/STC en anglais (Eastern Shores).
+function tradeCode(tr) { return (state.lang === "en" && tr.codeEn) ? tr.codeEn : tr.code; }
 function tradeById(id) { return TRADES.find(x => x.id === id); }
 
 function toggleLang() {
@@ -306,7 +308,7 @@ function renderResults() {
           <span class="match-emoji">${it.trade.emoji}</span>
           <span class="match-body">
             <span class="match-name">${esc(tradeName(it.trade))}</span>
-            <span class="match-code">${esc(it.trade.code)}</span>
+            <span class="match-code">${esc(tradeCode(it.trade))}</span>
             ${idx === 0 ? `<span class="best-tag">★ ${esc(t("topMatch"))}</span>` : ""}
           </span>
           <span class="match-pct">
@@ -384,8 +386,9 @@ function salarySourceNote(tr) {
     || (tr.demand && [1, 2, 3].includes(tr.demand.demandLevel));
   if (!hasData || !s.region) return "";
   const src = state.lang === "fr" ? "Guichet-Emplois" : "Job Bank";
+  const colon = state.lang === "fr" ? " : " : ": ";
   const when = s.updated ? ` · ${esc(s.updated)}` : "";
-  return `<p class="src-note">${esc(t("sourceLabel"))} : ${src} — ${esc(s.region)}${when}.</p>`;
+  return `<p class="src-note">${esc(t("sourceLabel"))}${colon}${src} — ${esc(s.region)}${when}.</p>`;
 }
 
 function renderTrade() {
@@ -401,7 +404,7 @@ function renderTrade() {
       <span class="trade-emoji">${tr.emoji}</span>
       <div>
         <h2>${esc(tradeName(tr))}</h2>
-        <span class="trade-code">${esc(tr.code)}</span>
+        <span class="trade-code">${esc(tradeCode(tr))}</span>
       </div>
     </div>
 
@@ -519,12 +522,12 @@ function renderCompare() {
       <div class="cmp-col">
         <div class="cmp-emoji">${chosen[0].emoji}</div>
         <div class="cmp-name">${esc(tradeName(chosen[0]))}</div>
-        <div class="cmp-code">${esc(chosen[0].code)}</div>
+        <div class="cmp-code">${esc(tradeCode(chosen[0]))}</div>
       </div>
       <div class="cmp-col">
         <div class="cmp-emoji">${chosen[1].emoji}</div>
         <div class="cmp-name">${esc(tradeName(chosen[1]))}</div>
-        <div class="cmp-code">${esc(chosen[1].code)}</div>
+        <div class="cmp-code">${esc(tradeCode(chosen[1]))}</div>
       </div>
 
       <div class="cmp-row-lbl">💵 ${esc(t("salary"))}</div>

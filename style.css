@@ -68,6 +68,23 @@ a { color: inherit; }
 }
 .text-input:focus { outline: none; border-color: var(--red); }
 .footnote { color: var(--muted); font-size: 12px; margin-top: 6px; }
+.linklike {
+  background: none; border: none; padding: 0; cursor: pointer;
+  color: var(--muted); font-size: 12px; text-decoration: underline;
+  font-family: inherit;
+}
+.linklike:hover { color: var(--red); }
+
+/* ---- Politique de confidentialité ---- */
+.pp-updated { color: var(--muted); font-size: 13px; margin: 2px 0 12px; }
+.pp-body { color: var(--ink); }
+.pp-lead { font-size: 16px; line-height: 1.5; margin: 0 0 8px; }
+.pp-body h3 { font-size: 16px; color: var(--red); margin: 18px 0 4px; }
+.pp-body p { font-size: 14.5px; line-height: 1.55; margin: 4px 0; }
+.pp-body ul { margin: 4px 0; padding-left: 20px; }
+.pp-body li { font-size: 14.5px; line-height: 1.5; margin: 3px 0; }
+.pp-msg { color: var(--green); font-weight: 600; font-size: 14px; min-height: 20px; margin-top: 8px; }
+.screen.privacy .ghost { margin-top: 16px; }
 .prov { color: var(--warn); font-style: italic; }
 .src-note { color: var(--muted); font-size: 11.5px; margin: 8px 2px 0; line-height: 1.4; }
 

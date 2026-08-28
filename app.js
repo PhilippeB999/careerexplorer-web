@@ -118,6 +118,9 @@ const UI = {
     yourProfile: "Ton profil d'intérêts",
     backHome: "Accueil",
     dailyLabel: "Au quotidien",
+    privacy: "Confidentialité",
+    clearData: "Effacer mes données locales",
+    clearDone: "Données locales effacées.",
     demandLevels: { 1: "Perspectives limitées", 2: "Perspectives modérées", 3: "Bonnes perspectives" }
   },
   en: {
@@ -160,6 +163,9 @@ const UI = {
     yourProfile: "Your interest profile",
     backHome: "Home",
     dailyLabel: "Day to day",
+    privacy: "Privacy",
+    clearData: "Clear my local data",
+    clearDone: "Local data cleared.",
     demandLevels: { 1: "Limited outlook", 2: "Moderate outlook", 3: "Good outlook" }
   }
 };
@@ -232,9 +238,88 @@ function renderHome() {
       placeholder="${esc(t("namePlaceholder"))}" value="${esc(state.name)}"
       oninput="state.name=this.value" autocomplete="given-name" />
     <button class="cta" onclick="startQuiz()">${esc(t("start"))} →</button>
-    <p class="footnote">Eastern Shores · <span class="prov">${esc(t("toValidate"))}</span></p>
+    <p class="footnote">Eastern Shores · <span class="prov">${esc(t("toValidate"))}</span>
+      · <button class="linklike" onclick="openPrivacy()">${esc(t("privacy"))}</button></p>
   </div>`;
 }
+
+/* ---------------- Écran : Politique de confidentialité (Loi 25) ---------------- */
+function openPrivacy() { state.screen = "privacy"; window.scrollTo(0, 0); render(); }
+
+function clearLocalData() {
+  try {
+    ["careerexplorer_device_id", "careerexplorer_events", "careerexplorer_lang"].forEach(k => localStorage.removeItem(k));
+  } catch (e) { /* stockage indisponible */ }
+  const el = document.getElementById("clearMsg");
+  if (el) el.textContent = t("clearDone");
+}
+
+function renderPrivacy() {
+  const updated = state.lang === "fr" ? "28 août 2026" : "August 28, 2026";
+  const body = state.lang === "fr" ? `
+    <p class="pp-lead">Career Explorer est un outil d'orientation qui aide les élèves à explorer des métiers. Il est conçu pour <b>protéger ta vie privée</b> : nous ne recueillons <b>aucun renseignement personnel</b>.</p>
+
+    <h3>Ce que nous ne recueillons pas</h3>
+    <p>Aucun nom, courriel, date de naissance, adresse, photo ni identifiant scolaire. Le <b>prénom facultatif</b> que tu peux inscrire à l'accueil <b>reste sur ton appareil</b> et n'est jamais envoyé à nos serveurs.</p>
+
+    <h3>Ce que nous mesurons — de façon anonyme</h3>
+    <p>Pour améliorer l'outil et savoir combien d'élèves terminent le questionnaire, nous enregistrons des statistiques d'usage <b>anonymes</b> :</p>
+    <ul>
+      <li>un <b>identifiant d'appareil aléatoire</b>, généré sur ton appareil et non relié à ton identité ;</li>
+      <li>les <b>actions</b> (questionnaire commencé ou terminé, métier consulté) ;</li>
+      <li>la <b>langue</b> et la <b>date/heure</b>.</li>
+    </ul>
+    <p>Ces données <b>ne permettent pas de t'identifier</b>. Aucune publicité, aucun cookie publicitaire, aucun traceur tiers, aucune vente ou partage à des tiers.</p>
+
+    <h3>Où sont stockées ces données</h3>
+    <p>Sur ton appareil (préférence de langue, identifiant aléatoire, journal local) et sur notre service d'analytique <b>Supabase</b>. Durée de conservation : <b>24 mois</b>, puis suppression. <span class="prov">[Région d'hébergement à confirmer]</span></p>
+
+    <h3>Tes choix</h3>
+    <p>Tu peux effacer en tout temps les données conservées sur ton appareil avec le bouton ci-dessous. Comme les statistiques d'usage sont anonymes, elles ne peuvent pas t'être reliées ni retrouvées individuellement.</p>
+
+    <h3>Jeunes utilisateurs</h3>
+    <p>L'outil est conçu pour un usage scolaire. Comme aucun renseignement personnel n'est recueilli, aucun consentement parental n'est requis pour l'utiliser.</p>
+
+    <h3>Responsable et questions</h3>
+    <p>Productions iMédias est responsable de cet outil. Pour toute question sur la protection des renseignements personnels : <b>philippe.beaubien@gmail.com</b>.</p>
+  ` : `
+    <p class="pp-lead">Career Explorer is a guidance tool that helps students explore trades. It is built to <b>protect your privacy</b>: we collect <b>no personal information</b>.</p>
+
+    <h3>What we do not collect</h3>
+    <p>No name, email, date of birth, address, photo or student ID. The <b>optional first name</b> you may enter on the home screen <b>stays on your device</b> and is never sent to our servers.</p>
+
+    <h3>What we measure — anonymously</h3>
+    <p>To improve the tool and see how many students finish the quiz, we record <b>anonymous</b> usage statistics:</p>
+    <ul>
+      <li>a <b>random device identifier</b>, generated on your device and not linked to your identity;</li>
+      <li>the <b>actions</b> (quiz started or completed, trade viewed);</li>
+      <li>the <b>language</b> and the <b>date/time</b>.</li>
+    </ul>
+    <p>This data <b>cannot identify you</b>. No advertising, no advertising cookies, no third-party trackers, no sale or sharing with third parties.</p>
+
+    <h3>Where the data is stored</h3>
+    <p>On your device (language preference, random identifier, local log) and on our <b>Supabase</b> analytics service. Retention: <b>24 months</b>, then deletion. <span class="prov">[Hosting region to be confirmed]</span></p>
+
+    <h3>Your choices</h3>
+    <p>You can erase the data kept on your device at any time with the button below. Because the usage statistics are anonymous, they cannot be linked back to you or retrieved individually.</p>
+
+    <h3>Young users</h3>
+    <p>The tool is designed for school use. Since no personal information is collected, no parental consent is required to use it.</p>
+
+    <h3>Who is responsible & questions</h3>
+    <p>Productions iMédias is responsible for this tool. For any question about the protection of personal information: <b>philippe.beaubien@gmail.com</b>.</p>
+  `;
+  root.innerHTML = `
+  <div class="screen privacy">
+    ${langBar(true, "openHome")}
+    <h2 class="screen-title">🔒 ${esc(t("privacy"))}</h2>
+    <p class="pp-updated">${state.lang === "fr" ? "Mise à jour" : "Updated"} : ${esc(updated)}</p>
+    <div class="pp-body">${body}</div>
+    <button class="ghost" onclick="clearLocalData()">🧹 ${esc(t("clearData"))}</button>
+    <p id="clearMsg" class="pp-msg"></p>
+  </div>`;
+}
+function openHome() { state.screen = "home"; window.scrollTo(0, 0); render(); }
 
 function startQuiz() {
   state.answers = {};
@@ -587,6 +672,7 @@ function render() {
   document.documentElement.lang = state.lang;
   switch (state.screen) {
     case "home": return renderHome();
+    case "privacy": return renderPrivacy();
     case "quiz": return renderQuiz();
     case "results": return renderResults();
     case "trade": return renderTrade();

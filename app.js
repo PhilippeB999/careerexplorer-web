@@ -89,6 +89,7 @@ const UI = {
     next: "Suivant",
     back: "Retour",
     seeResults: "Voir mes résultats",
+    pickHint: "Choisis une réponse",
     resultsTitle: "Tes métiers les mieux appariés",
     resultsIntro: "Selon tes réponses, voici les métiers d'Eastern Shores qui collent le plus à tes intérêts. Clique pour explorer chacun.",
     affinity: "affinité",
@@ -129,6 +130,7 @@ const UI = {
     next: "Next",
     back: "Back",
     seeResults: "See my results",
+    pickHint: "Pick an answer",
     resultsTitle: "Your best-matched trades",
     resultsIntro: "Based on your answers, here are the Eastern Shores trades that fit your interests best. Tap to explore each one.",
     affinity: "match",
@@ -247,30 +249,45 @@ function renderQuiz() {
   const total = QUIZ.length;
   const current = state.answers[q.id];
   const pct = Math.round((i / total) * 100);
+  const size = { 0: 52, 1: 42, 2: 34, 3: 42, 4: 52 };
+  const tone = { 0: "no", 1: "no", 2: "mid", 3: "yes", 4: "yes" };
+  const last = total - 1;
+  const answered = typeof current === "number";
   root.innerHTML = `
   <div class="screen quiz">
     ${langBar(true, "quizBack")}
     <div class="progress"><div class="progress-fill" style="width:${pct}%"></div></div>
     <p class="qcount">${esc(t("qOf")(i + 1, total))}</p>
     <h2 class="statement">${esc(L(q.fr, q.en))}</h2>
-    <div class="scale">
-      ${SCALE.map(s => `
-        <button class="scale-btn ${current === s.v ? "sel" : ""}" onclick="answerQuiz(${s.v})">
-          <span class="scale-dot"></span>
-          <span class="scale-lbl">${esc(L(s.fr, s.en))}</span>
-        </button>`).join("")}
+    <div class="scale-wrap">
+      <div class="scale-row" role="radiogroup" aria-label="${esc(L(q.fr, q.en))}">
+        ${SCALE.map(s => `
+          <button class="scale-c ${tone[s.v]} ${current === s.v ? "sel" : ""}"
+            style="--sz:${size[s.v]}px" onclick="answerQuiz(${s.v})"
+            role="radio" aria-checked="${current === s.v}"
+            title="${esc(L(s.fr, s.en))}" aria-label="${esc(L(s.fr, s.en))}"></button>`).join("")}
+      </div>
+      <div class="scale-ends">
+        <span>${esc(L(SCALE[0].fr, SCALE[0].en))}</span>
+        <span>${esc(L(SCALE[SCALE.length - 1].fr, SCALE[SCALE.length - 1].en))}</span>
+      </div>
     </div>
     <div class="quiz-nav">
-      <button class="ghost" onclick="quizBack()" ${i === 0 ? "disabled" : ""}>← ${esc(t("back"))}</button>
-      <button class="cta small" onclick="quizNext()" ${typeof current !== "number" ? "disabled" : ""}>
-        ${i === total - 1 ? esc(t("seeResults")) : esc(t("next")) + " →"}
-      </button>
+      <button class="ghost" onclick="quizBack()">← ${esc(t("back"))}</button>
+      ${i === last && answered
+        ? `<button class="cta small" onclick="finishQuiz()">${esc(t("seeResults"))} →</button>`
+        : `<span class="quiz-hint">${answered ? "" : esc(t("pickHint"))}</span>`}
     </div>
   </div>`;
 }
 function answerQuiz(v) {
   state.answers[QUIZ[state.quizIndex].id] = v;
   render();
+  // Passage automatique à la question suivante (sauf la dernière : choix délibéré).
+  if (state.quizIndex < QUIZ.length - 1) {
+    clearTimeout(window._advTimer);
+    window._advTimer = setTimeout(() => { state.quizIndex++; render(); }, 320);
+  }
 }
 function quizNext() {
   if (typeof state.answers[QUIZ[state.quizIndex].id] !== "number") return;

@@ -98,23 +98,42 @@ a { color: inherit; }
 .progress { height: 8px; background: var(--line); border-radius: 6px; overflow: hidden; }
 .progress-fill { height: 100%; background: var(--red); border-radius: 6px; transition: width .3s ease; }
 .qcount { color: var(--muted); font-size: 13px; font-weight: 600; margin: 2px 0; }
-.statement { font-size: 21px; line-height: 1.4; margin: 4px 0 10px; }
-.scale { display: flex; flex-direction: column; gap: 10px; }
-.scale-btn {
-  display: flex; align-items: center; gap: 12px;
-  background: var(--card); border: 2px solid var(--line);
-  border-radius: 12px; padding: 14px 16px; text-align: left;
-  font-size: 16px; color: var(--ink); box-shadow: var(--shadow);
+.statement {
+  font-size: 23px; line-height: 1.35; font-weight: 700;
+  margin: 10px 0 4px; text-align: center; text-wrap: balance;
+  min-height: 3.2em; display: flex; align-items: center; justify-content: center;
 }
-.scale-dot {
-  width: 20px; height: 20px; border-radius: 50%;
-  border: 2px solid var(--line); flex-shrink: 0; transition: all .12s ease;
+/* Échelle horizontale : « Pas moi » → « Tout à fait moi », pastilles graduées. */
+.scale-wrap { margin: 18px 0 6px; }
+.scale-row {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 6px; width: 100%; max-width: 340px; margin: 0 auto; padding: 6px 4px;
 }
-.scale-btn.sel { border-color: var(--red); background: #fff3f1; }
-.scale-btn.sel .scale-dot { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 4px #fbdcd7; }
-.scale-lbl { font-weight: 600; }
-.quiz-nav { display: flex; justify-content: space-between; gap: 10px; margin-top: 8px; }
-.quiz-nav .cta.small { flex: 1; }
+.scale-c {
+  flex: none;
+  width: min(var(--sz), 15vw); height: min(var(--sz), 15vw); border-radius: 50%;
+  background: var(--card); cursor: pointer; padding: 0;
+  border: 2.5px solid var(--line);
+  transition: transform .14s ease, box-shadow .14s ease, background .14s ease, border-color .14s ease;
+}
+.scale-c.no  { border-color: #9fb0bf; }   /* côté « pas moi » : bleu-ardoise */
+.scale-c.mid { border-color: #c9bca8; }   /* neutre */
+.scale-c.yes { border-color: #e79a8d; }   /* côté « tout à fait moi » : rouge iMédias */
+.scale-c:hover { transform: scale(1.08); }
+.scale-c:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(212,42,28,.18); }
+.scale-c.sel { transform: scale(1.06); }
+.scale-c.no.sel  { background: #6f8598; border-color: #6f8598; box-shadow: 0 0 0 5px rgba(111,133,152,.20); }
+.scale-c.mid.sel { background: #b7a488; border-color: #b7a488; box-shadow: 0 0 0 5px rgba(183,164,136,.20); }
+.scale-c.yes.sel { background: var(--red); border-color: var(--red); box-shadow: 0 0 0 5px rgba(212,42,28,.18); }
+.scale-ends {
+  display: flex; justify-content: space-between; gap: 12px;
+  width: 100%; max-width: 340px; margin: 6px auto 0; padding: 0 2px;
+  font-size: 13px; font-weight: 600; color: var(--muted);
+}
+.scale-ends span:first-child { color: #6f8598; }
+.scale-ends span:last-child  { color: var(--red); }
+.quiz-nav { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 20px; min-height: 44px; }
+.quiz-hint { color: var(--muted); font-size: 14px; font-style: italic; }
 
 /* ---- Titres d'écran ---- */
 .screen-title { font-size: 24px; margin: 6px 0 0; }
